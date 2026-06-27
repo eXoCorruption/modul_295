@@ -1,0 +1,267 @@
+[
+  {
+    "id": "1",
+    "text": "Wie viele Spieler stehen pro Mannschaft beim Fussball gleichzeitig auf dem Platz?",
+    "category": "Sport",
+    "difficulty": "leicht",
+    "answers": ["9", "10", "11", "12"],
+    "correctAnswer": "11"
+  },
+  {
+    "id": "2",
+    "text": "In welcher Sportart wird der Stanley Cup vergeben?",
+    "category": "Sport",
+    "difficulty": "mittel",
+    "answers": ["Basketball", "American Football", "Eishockey", "Baseball"],
+    "correctAnswer": "Eishockey"
+  },
+  {
+    "id": "3",
+    "text": "Welcher Schweizer Tennisspieler gewann insgesamt 20 Grand-Slam-Einzeltitel?",
+    "category": "Sport",
+    "difficulty": "leicht",
+    "answers": ["Stan Wawrinka", "Roger Federer", "Marc Rosset", "Heinz Günthardt"],
+    "correctAnswer": "Roger Federer"
+  },
+  {
+    "id": "4",
+    "text": "Alle wie viele Jahre finden die Olympischen Sommerspiele statt?",
+    "category": "Sport",
+    "difficulty": "leicht",
+    "answers": ["2", "3", "4", "5"],
+    "correctAnswer": "4"
+  },
+  {
+    "id": "5",
+    "text": "Wo fanden die Olympischen Sommerspiele 2016 statt?",
+    "category": "Sport",
+    "difficulty": "mittel",
+    "answers": ["London", "Peking", "Rio de Janeiro", "Tokio"],
+    "correctAnswer": "Rio de Janeiro"
+  },
+  {
+    "id": "6",
+    "text": "Wie viele Punkte braucht eine Mannschaft mindestens, um einen regulären Satz im Volleyball (Sätze 1 bis 4) zu gewinnen?",
+    "category": "Sport",
+    "difficulty": "schwer",
+    "answers": ["15", "21", "25", "30"],
+    "correctAnswer": "25"
+  },
+  {
+    "id": "7",
+    "text": "Wie viele Ringe hat das olympische Symbol?",
+    "category": "Sport",
+    "difficulty": "leicht",
+    "answers": ["3", "4", "5", "6"],
+    "correctAnswer": "5"
+  },
+  {
+    "id": "8",
+    "text": "In welchem Sport gibt es einen Slam Dunk?",
+    "category": "Sport",
+    "difficulty": "leicht",
+    "answers": ["Basketball", "Volleyball", "Tennis", "Handball"],
+    "correctAnswer": "Basketball"
+  },
+  {
+    "id": "9",
+    "text": "Was bedeutet die Abkürzung HTTP?",
+    "category": "Technologie",
+    "difficulty": "leicht",
+    "answers": [
+      "HyperText Transfer Protocol",
+      "HyperText Transmission Protocol",
+      "HyperText Transfer Program",
+      "HyperText Transmission Program"
+    ],
+    "correctAnswer": "HyperText Transfer Protocol"
+  },
+  {
+    "id": "10",
+    "text": "Wer gründete zusammen mit Paul Allen das Unternehmen Microsoft?",
+    "category": "Technologie",
+    "difficulty": "leicht",
+    "answers": ["Steve Jobs", "Bill Gates", "Steve Ballmer", "Larry Ellison"],
+    "correctAnswer": "Bill Gates"
+  },
+  {
+    "id": "11",
+    "text": "In welchem Jahr stellte Apple das erste iPhone der Öffentlichkeit vor?",
+    "category": "Technologie",
+    "difficulty": "mittel",
+    "answers": ["2005", "2006", "2007", "2008"],
+    "correctAnswer": "2007"
+  },
+  {
+    "id": "12",
+    "text": "Welche Programmiersprache wurde von Guido van Rossum entwickelt?",
+    "category": "Technologie",
+    "difficulty": "schwer",
+    "answers": ["Ruby", "Perl", "Python", "PHP"],
+    "correctAnswer": "Python"
+  },
+  {
+    "id": "13",
+    "text": "Wofür steht die Abkürzung GPU im Computerbereich?",
+    "category": "Technologie",
+    "difficulty": "leicht",
+    "answers": [
+      "General Processing Unit",
+      "Graphics Processing Unit",
+      "Graphical Power Unit",
+      "Global Processing Utility"
+    ],
+    "correctAnswer": "Graphics Processing Unit"
+  },
+  {
+    "id": "14",
+    "text": "Welche Sprache wird primär für Spring Boot verwendet?",
+    "category": "Technologie",
+    "difficulty": "leicht",
+    "answers": ["Python", "Java", "Ruby", "PHP"],
+    "correctAnswer": "Java"
+  },
+  {
+    "id": "15",
+    "text": "Welche HTTP-Methode wird typischerweise zum Erstellen einer Ressource verwendet?",
+    "category": "Technologie",
+    "difficulty": "mittel",
+    "answers": ["GET", "POST", "DELETE", "HEAD"],
+    "correctAnswer": "POST"
+  },
+  {
+    "id": "16",
+    "text": "Wie heisst die Hauptstadt von Australien?",
+    "category": "Geographie",
+    "difficulty": "leicht",
+    "answers": ["Sydney", "Melbourne", "Canberra", "Perth"],
+    "correctAnswer": "Canberra"
+  },
+  {
+    "id": "17",
+    "text": "Welcher Fluss ist der längste in Europa?",
+    "category": "Geographie",
+    "difficulty": "mittel",
+    "answers": ["Donau", "Rhein", "Wolga", "Dnepr"],
+    "correctAnswer": "Wolga"
+  },
+  {
+    "id": "18",
+    "text": "Welcher ist der tiefste See der Erde?",
+    "category": "Geographie",
+    "difficulty": "mittel",
+    "answers": ["Kaspisches Meer", "Tanganjikasee", "Baikalsee", "Lake Superior"],
+    "correctAnswer": "Baikalsee"
+  },
+  {
+    "id": "19",
+    "text": "In welchem Land liegt die Atacama-Wüste?",
+    "category": "Geographie",
+    "difficulty": "mittel",
+    "answers": ["Peru", "Chile", "Argentinien", "Bolivien"],
+    "correctAnswer": "Chile"
+  },
+  {
+    "id": "20",
+    "text": "Was ist die Hauptstadt der Schweiz?",
+    "category": "Geographie",
+    "difficulty": "leicht",
+    "answers": ["Zürich", "Bern", "Genf", "Basel"],
+    "correctAnswer": "Bern"
+  },
+  {
+    "id": "21",
+    "text": "Welcher Ozean ist der grösste der Welt?",
+    "category": "Geographie",
+    "difficulty": "mittel",
+    "answers": ["Atlantik", "Pazifik", "Indischer Ozean", "Arktischer Ozean"],
+    "correctAnswer": "Pazifik"
+  },
+  {
+    "id": "22",
+    "text": "Was ist die Hauptstadt von Spanien?",
+    "category": "Geographie",
+    "difficulty": "leicht",
+    "answers": ["Rom", "Bern", "Madrid", "Paris"],
+    "correctAnswer": "Madrid"
+  },
+  {
+    "id": "23",
+    "text": "Welches ist das höchste Gebirge der Welt?",
+    "category": "Geographie",
+    "difficulty": "mittel",
+    "answers": ["Alpen", "Anden", "Himalaya", "Rocky Mountains"],
+    "correctAnswer": "Himalaya"
+  },
+  {
+    "id": "24",
+    "text": "In welchem Jahr fiel die Berliner Mauer?",
+    "category": "Geschichte",
+    "difficulty": "leicht",
+    "answers": ["1987", "1989", "1990", "1991"],
+    "correctAnswer": "1989"
+  },
+  {
+    "id": "25",
+    "text": "In welchem Jahr wurde die Schweizerische Eidgenossenschaft gegründet?",
+    "category": "Geschichte",
+    "difficulty": "mittel",
+    "answers": ["1291", "1315", "1351", "1499"],
+    "correctAnswer": "1291"
+  },
+  {
+    "id": "26",
+    "text": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
+    "category": "Geschichte",
+    "difficulty": "mittel",
+    "answers": [
+      "Willy Brandt",
+      "Ludwig Erhard",
+      "Konrad Adenauer",
+      "Kurt Georg Kiesinger"
+    ],
+    "correctAnswer": "Konrad Adenauer"
+  },
+  {
+    "id": "27",
+    "text": "Welches Reich endete 1453 mit der Eroberung Konstantinopels?",
+    "category": "Geschichte",
+    "difficulty": "schwer",
+    "answers": [
+      "Heiliges Römisches Reich",
+      "Byzantinisches Reich",
+      "Persisches Reich",
+      "Mongolisches Reich"
+    ],
+    "correctAnswer": "Byzantinisches Reich"
+  },
+  {
+    "id": "28",
+    "text": "In welchem Jahr begann der Dreissigjährige Krieg?",
+    "category": "Geschichte",
+    "difficulty": "mittel",
+    "answers": ["1608", "1618", "1625", "1648"],
+    "correctAnswer": "1618"
+  },
+  {
+    "id": "29",
+    "text": "Wer verfasste das politische Werk 'Der Fürst' (Il Principe)?",
+    "category": "Geschichte",
+    "difficulty": "schwer",
+    "answers": [
+      "Thomas Hobbes",
+      "Dante Alighieri",
+      "Niccolo Machiavelli",
+      "Erasmus von Rotterdam"
+    ],
+    "correctAnswer": "Niccolo Machiavelli"
+  },
+  {
+    "id": "30",
+    "text": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
+    "category": "Geschichte",
+    "difficulty": "leicht",
+    "answers": ["1943", "1944", "1945", "1946"],
+    "correctAnswer": "1945"
+  }
+]

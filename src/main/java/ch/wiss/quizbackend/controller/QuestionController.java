@@ -1,10 +1,11 @@
 package ch.wiss.quizbackend.controller;
 
+import ch.wiss.quizbackend.dto.QuestionFormDTO;
 import ch.wiss.quizbackend.model.Question;
 import ch.wiss.quizbackend.service.QuestionService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ch.wiss.quizbackend.dto.QuestionFormDTO;
 
 
 import java.util.List;
@@ -43,13 +44,13 @@ public class QuestionController {
 
     @PostMapping("/api/questions")
     @ResponseStatus(HttpStatus.CREATED)
-    public Question createQuestion(@RequestBody QuestionFormDTO form) {
+    public Question createQuestion(@Valid @RequestBody QuestionFormDTO form) {
         return questionService.createQuestion(form);
     }
 
 
     @PutMapping("/api/questions/{id}")
-    public Question updateQuestion(@PathVariable String id, @RequestBody QuestionFormDTO form) {
+    public Question updateQuestion(@PathVariable String id, @Valid @RequestBody QuestionFormDTO form) {
         return questionService.updateQuestion(id, form);
     }
 
@@ -57,6 +58,37 @@ public class QuestionController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteQuestion(@PathVariable String id) {
         questionService.deleteQuestion(id);
+    }
+
+
+    @GetMapping("/api/questions/category/{category}")
+    public List<Question> getQuestionsByCategory(@PathVariable String category) {
+        return questionService.getQuestionByCategory(category);
+    }
+
+    @GetMapping("/api/questions/difficulty/{difficulty}")
+    public List<Question> getQuestionsByDifficulty(@PathVariable String difficulty) {
+        return questionService.getQuestionsByDifficulty(difficulty);
+    }
+
+    /**
+     * Gibt eine Liste von Fragen zurück, sortiert nach Kategorie,
+     * falls mitgegeben und einer Limite für die Anzahl Fragen die returniert werden sollen.
+     * <p>
+     *     <b>Was passiert hier?</b>
+     * <ul>
+     *     <li>@RequestParam liest Werte aus der Query der URL (der Teil nach dem ?).</li>
+     *     <li>required = false macht category optional – fehlt sie, ist der Wert null.</li>
+     *     <li>defaultValue = "10" belegt count vor, falls der Client nichts angibt.</li>
+     * </ul>
+     * </p>
+     */
+    @GetMapping("/api/questions/random")
+    public List<Question> getRandomQuestions(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String difficulty,
+            @RequestParam(defaultValue = "10") int count) {
+        return questionService.getRandomQuestions(category, difficulty, count);
     }
 
 

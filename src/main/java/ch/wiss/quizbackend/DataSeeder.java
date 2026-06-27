@@ -3,65 +3,50 @@ package ch.wiss.quizbackend;
 import ch.wiss.quizbackend.model.Question;
 import ch.wiss.quizbackend.repository.QuestionRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
- * Füllt die Datenbank beim Programmstart mit Startdaten.
- * <p>
- * Der Seeder besitzt die Startdaten jetzt selbst und ist nicht mehr
- * vom QuestionService abhängig.
+ * Füllt die Datenbank beim Start mit den Fragen aus questions.json,
+ * aber nur dann, wenn die Tabelle noch leer ist.
  */
 @Component
 public class DataSeeder implements CommandLineRunner {
 
     private final QuestionRepository questionRepository;
+    private final ObjectMapper objectMapper;
 
-    public DataSeeder(QuestionRepository questionRepository) {
+
+    /**
+     * Neu mit ObjectMapper für das auslesen der Json-Datei
+     */
+    public DataSeeder(QuestionRepository questionRepository,  ObjectMapper objectMapper) {
         this.questionRepository = questionRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
     public void run(String... args) throws Exception {
         if (questionRepository.count() == 0) {
-            questionRepository.saveAll(getStartQuestions());
-            System.out.println("DataSeeder: " + questionRepository.count() + " Fragen in die DB geschrieben.");
+            // wir greifen auf die question.json Datei zu
+            ClassPathResource resource = new ClassPathResource("questions.json");
+
+            try (InputStream inputStream = resource.getInputStream()) {
+                // wir lesen die Werte aus dem InputStream und wandeln sie in eine Liste vom Typ Question um
+                List<Question> questions = objectMapper.readValue(inputStream, new TypeReference<List<Question>>()
+                {});
+                // wir speichern nun die Liste der Question die wir aus der Json-Datei gelesen haben
+                questionRepository.saveAll(questions);
+                System.out.println("DataSeeder: " + questionRepository.count() + " Fragen in die DB geschrieben.");
+            }
+
         } else {
             System.out.println("DataSeeder: DB enthält bereits Daten, kein Seeding nötig.");
         }
     }
-
-    /**
-     * Liefert die Startfragen, mit denen eine leere Datenbank befüllt wird.
-     */
-    private List<Question> getStartQuestions() {
-        return List.of(
-                new Question(
-                        "1",
-                        "Welches Videospiel gilt als erstes kommerziell erfolgreiches Arcade-Spiel?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Pong", "Space Invaders", "Pac-Man", "Tetris"),
-                        "Pong"
-                ),
-                new Question(
-                        "2",
-                        "In welchem Spiel spielt man als Gordon Freeman?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Half-Life", "Doom", "Quake", "Portal"),
-                        "Half-Life"
-                ),
-                new Question(
-                        "3",
-                        "Welche Firma entwickelte Minecraft ursprünglich?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Mojang", "Valve", "Epic Games", "Blizzard"),
-                        "Mojang"
-                )
-        );
-    }
 }
-

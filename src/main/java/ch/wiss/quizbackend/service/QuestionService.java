@@ -1,13 +1,13 @@
 package ch.wiss.quizbackend.service;
 
 import ch.wiss.quizbackend.dto.QuestionFormDTO;
+import ch.wiss.quizbackend.exception.QuestionNotFoundException;
 import ch.wiss.quizbackend.mapper.QuestionMapper;
 import ch.wiss.quizbackend.model.Question;
 import ch.wiss.quizbackend.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Service-Schicht für Fragen. Kapselt die Geschäftslogik und
@@ -36,7 +36,8 @@ public class QuestionService {
      * @return
      */
     public Question getQuestionById(String id) {
-        return questionRepository.findById(id).orElse(null);
+        return questionRepository.findById(id)
+                .orElseThrow(() -> new QuestionNotFoundException(id));
     }
 
     /**
@@ -60,6 +61,10 @@ public class QuestionService {
      * @return
      */
     public Question updateQuestion(String id, QuestionFormDTO form) {
+        if(!questionRepository.existsById(id)) {
+            throw new QuestionNotFoundException(id);
+        }
+
         Question question = QuestionMapper.toEntity(id, form);
         return questionRepository.save(question);
     }
@@ -69,6 +74,83 @@ public class QuestionService {
      * Löscht die Frage mit der angegebenen id aus der Datenbank.
      */
     public void deleteQuestion(String id) {
+        if(!questionRepository.existsById(id)) {
+            throw new QuestionNotFoundException(id);
+        }
         questionRepository.deleteById(id);
     }
+
+    /**
+     * Liefert alle Fragen einer bestimmten Kategorie.
+     * @param category
+     * @return
+     */
+    public List<Question> getQuestionByCategory(String category) {
+        return questionRepository.findByCategory(category);
+    }
+
+    /**
+     * Liefert alle Freagen einer bestimmten Schwierigkeit.
+     * @param difficulty
+     * @return
+     */
+    public List<Question> getQuestionsByDifficulty(String difficulty) {
+        return questionRepository.findByDifficulty(difficulty);
+    }
+
+
+//    public List<Question> getRandomQuestions(String category, int count) {
+//        List<Question> pool = (category == null) ? questionRepository.findAll() : questionRepository.findByCategory(category);
+//
+//        List<Question> shuffledPool = new ArrayList<>(pool);
+//        Collections.shuffle(shuffledPool);
+//
+//        return shuffledPool.stream().limit(count).toList();
+//    }
+//
+//    public List<Question> getRandomQuestions(String difficulty, int count) {
+//        List<Question> pool = (difficulty == null) ? questionRepository.findAll() : questionRepository.findByDifficulty(difficulty);
+//
+//        List<Question> shuffledPool = new ArrayList<>(pool);
+//        Collections.shuffle(shuffledPool);
+//
+//        return shuffledPool.stream().limit(count).toList();
+//    }
+
+
+    public List<Question> getRandomQuestions(String category, String difficulty, int count) {
+        List<Question> pool;
+
+        if (category != null && difficulty != null) {
+            pool = questionRepository.findByCategoryAndDifficulty(category, difficulty);
+        } else if (category != null) {
+            pool = questionRepository.findByCategory(category);
+        } else if (difficulty != null) {
+            pool = questionRepository.findByDifficulty(difficulty);
+        } else {
+            pool = questionRepository.findAll();
+        }
+
+        List<Question> shuffledPool = new ArrayList<>(pool);
+        Collections.shuffle(shuffledPool);
+        return shuffledPool.stream().limit(count).toList();
+    }
+
+//    public List<Question> getRandomQuestions(String category, String difficulty, int count) {
+//        List<Question> pool = Optional.ofNullable(category)
+//                .flatMap(cat -> Optional.ofNullable(difficulty)
+//                    .map(diff -> questionRepository.findByCategoryAndDifficulty(cat, diff))
+//                    .or(() -> Optional.ofNullable(questionRepository.findByCategory(cat)))
+//                )
+//                .orElseGet(() -> Optional.ofNullable(difficulty)
+//                        .map(questionRepository::findByDifficulty)
+//                        .orElseGet(questionRepository::findAll)
+//                );
+//
+//        List<Question> shuffledPool = new ArrayList<>(pool);
+//        Collections.shuffle(shuffledPool);
+//
+//        return shuffledPool.stream().limit(count).toList();
+//    }
+
 }
