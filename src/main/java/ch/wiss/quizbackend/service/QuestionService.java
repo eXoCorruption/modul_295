@@ -1,6 +1,7 @@
 package ch.wiss.quizbackend.service;
 
 import ch.wiss.quizbackend.model.Question;
+import ch.wiss.quizbackend.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,32 +9,23 @@ import java.util.List;
 @Service
 public class QuestionService {
 
+    private final QuestionRepository questionRepository;
+
+    public QuestionService(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
+    }
+
+    /**
+     * Liefert alle Fragen aus der Datenbank.
+     */
     public List<Question> getAllQuestions() {
-        return List.of(
-                new Question(
-                        "1",
-                        "Welches Videospiel gilt als erstes kommerziell erfolgreiches Arcade-Spiel?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Pong", "Space Invaders", "Pac-Man", "Tetris"),
-                        "Pong"
-                ),
-                new Question(
-                        "2",
-                        "In welchem Spiel spielt man als Gordon Freeman?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Half-Life", "Doom", "Quake", "Portal"),
-                        "Half-Life"
-                ),
-                new Question(
-                        "3",
-                        "Welche Firma entwickelte Minecraft ursprünglich?",
-                        "Gaming",
-                        "leicht",
-                        List.of("Mojang", "Valve", "Epic Games", "Blizzard"),
-                        "Mojang"
-                )
-        );
+        return questionRepository.findAll();
+    }
+
+    /**
+     * Liefert eine einzelne Frage anhand ihrer ID, oder null, wenn es sie nicht gibt.
+     */
+    public Question getQuestionById(String id) {
+        return questionRepository.findById(id).orElse(null);
     }
 }

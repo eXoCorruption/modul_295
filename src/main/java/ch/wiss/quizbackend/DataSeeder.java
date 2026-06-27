@@ -1,37 +1,67 @@
 package ch.wiss.quizbackend;
 
+import ch.wiss.quizbackend.model.Question;
 import ch.wiss.quizbackend.repository.QuestionRepository;
-import ch.wiss.quizbackend.service.QuestionService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Füllt die Datenbank beim Programmstart mit Startdaten.
  * <p>
- * Die Daten werden nicht neu erfunden, sondern aus dem bestehenden
- * {@link QuestionService} übernommen und in die DB geschrieben.
+ * Der Seeder besitzt die Startdaten jetzt selbst und ist nicht mehr
+ * vom QuestionService abhängig.
  */
 @Component
 public class DataSeeder implements CommandLineRunner {
 
-    private final QuestionService questionService;
     private final QuestionRepository questionRepository;
 
-    public DataSeeder(QuestionService questionService,
-                      QuestionRepository questionRepository) {
-        this.questionService = questionService;
+    public DataSeeder(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
 
     @Override
-    public void run(String... args) {
-        // Nur seeden, wenn die Tabelle leer ist,sonst bei jedem Neustart Duplikate.
+    public void run(String... args) throws Exception {
         if (questionRepository.count() == 0) {
-            questionRepository.saveAll(questionService.getAllQuestions());
-            System.out.println("DataSeeder: " + questionRepository.count()
-                    + " Fragen in die DB geschrieben.");
+            questionRepository.saveAll(getStartQuestions());
+            System.out.println("DataSeeder: " + questionRepository.count() + " Fragen in die DB geschrieben.");
         } else {
-            System.out.println("DataSeeder: DB enthält bereits Daten,  kein Seeding nötig.");
+            System.out.println("DataSeeder: DB enthält bereits Daten, kein Seeding nötig.");
         }
     }
+
+    /**
+     * Liefert die Startfragen, mit denen eine leere Datenbank befüllt wird.
+     */
+    private List<Question> getStartQuestions() {
+        return List.of(
+                new Question(
+                        "1",
+                        "Welches Videospiel gilt als erstes kommerziell erfolgreiches Arcade-Spiel?",
+                        "Gaming",
+                        "leicht",
+                        List.of("Pong", "Space Invaders", "Pac-Man", "Tetris"),
+                        "Pong"
+                ),
+                new Question(
+                        "2",
+                        "In welchem Spiel spielt man als Gordon Freeman?",
+                        "Gaming",
+                        "leicht",
+                        List.of("Half-Life", "Doom", "Quake", "Portal"),
+                        "Half-Life"
+                ),
+                new Question(
+                        "3",
+                        "Welche Firma entwickelte Minecraft ursprünglich?",
+                        "Gaming",
+                        "leicht",
+                        List.of("Mojang", "Valve", "Epic Games", "Blizzard"),
+                        "Mojang"
+                )
+        );
+    }
 }
+
