@@ -28,4 +28,30 @@ public class QuestionService {
     public Question getQuestionById(String id) {
         return questionRepository.findById(id).orElse(null);
     }
+    /**
+     * Speichert eine neue Frage in der Datenbank und gibt die
+     * gespeicherte Frage zurück.
+     */
+    public Question createQuestion(Question question) {
+        return questionRepository.save(question);
+    }
+
+
+    /**
+     *  Aktualisiert eine bestehende Frage. Die id aus dem Pfad ist
+     * massgebend und wird auf die Frage gesetzt, bevor gespeichert wird.
+     */
+    public Question updateQuestion(String id, Question question) {
+        question.setId(id);
+        return questionRepository.save(question);
+    }
+
+
+    /**
+     * Löscht die Frage mit der angegebenen id aus der Datenbank.
+     */
+    public void deleteQuestion(String id) {
+        questionRepository.deleteById(id);
+    }
+
 }
